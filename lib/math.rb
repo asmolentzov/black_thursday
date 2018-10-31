@@ -21,4 +21,10 @@ module Math
     Math.sqrt(variance).round(2)
   end
   
+  def std_dev_above_average(num = 1, numbers)
+    mean = mean(numbers)
+    std_dev = std_dev(numbers)
+    mean + (num * std_dev)
+  end
+  
 end

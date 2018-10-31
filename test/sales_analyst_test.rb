@@ -384,10 +384,6 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 3, @sales_analyst.count_of_merchants
   end
 
-  def test_it_can_calculate_the_average_number_of_items_per_merchant
-    assert_equal 1.67, @sales_analyst.average_items_per_merchant
-  end
-
   def test_analyst_can_find_which_merchants_sells_the_most
     merchant_1 = Merchant.new({id: 5, name: 'Steve'})
     merchant_2 = Merchant.new({id: 10, name: 'Turing School'})
@@ -467,14 +463,16 @@ class SalesAnalystTest < Minitest::Test
     nums = [1, 2, 3, 4]
     assert_equal 1.29, @sales_analyst.std_dev(nums)
   end
+  
+  def test_it_can_calculate_number_std_dev_above_average
+    nums = [1, 2, 3, 4]
+    assert_equal 3.79, @sales_analyst.std_dev_above_average(nums)
+    assert_equal 5.08, @sales_analyst.std_dev_above_average(2, nums)
+  end
 
   def test_it_returns_num_items_per_merchant
     expected = {@merchant_1 => 2, @merchant_2 => 2, @merchant_3 => 1}
     assert_equal expected, @sales_analyst.num_items_for_each_merchant
-  end
-
-  def test_it_can_calculate_average_items_per_merchant_std_deviation
-    assert_equal 0.58, @sales_analyst.average_items_per_merchant_standard_deviation
   end
 
   def test_it_can_calculate_average_average_price_per_merchant
