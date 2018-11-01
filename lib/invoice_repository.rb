@@ -30,15 +30,12 @@ class InvoiceRepository
   end
 
   def create(attributes)
-    new_id = max_id + 1
-    customer_id = attributes[:customer_id]
-    merchant_id = attributes[:merchant_id]
-    status = attributes[:status]
-    created_at = Time.now.to_s
-    updated_at = Time.now.to_s
-    new_invoice = Invoice.new({id: new_id, customer_id: customer_id,
-     merchant_id: merchant_id, status: status, created_at: created_at,
-     updated_at: updated_at})
+    new_invoice = Invoice.new({id: max_id + 1, 
+                              customer_id: attributes[:customer_id],
+                              merchant_id: attributes[:merchant_id], 
+                              status: attributes[:status], 
+                              created_at: Time.now.to_s,
+                              updated_at: Time.now.to_s})
     @collection << new_invoice
     new_invoice
   end
