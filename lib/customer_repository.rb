@@ -20,16 +20,13 @@ class CustomerRepository
       last.last_name.upcase.include?(name.upcase)
     end
   end
-  #What's needed
+  
   def create(attributes)
-    new_id = max_id + 1
-    first_name = attributes[:first_name]
-    last_name = attributes[:last_name]
-    created_at = Time.now.to_s
-    updated_at = Time.now.to_s
-    new_customer = Customer.new({id: new_id, first_name: first_name,
-    last_name: last_name, created_at: created_at,
-    updated_at: updated_at})
+    new_customer = Customer.new({id: max_id + 1, 
+                                first_name: attributes[:first_name],
+                                last_name: attributes[:last_name], 
+                                created_at: Time.now.to_s,
+                                updated_at: Time.now.to_s})
     @collection << new_customer
     new_customer
   end
@@ -45,8 +42,4 @@ class CustomerRepository
       customer.updated_at = Time.now
     end
   end
-  #update
-  #delete
-
-
 end
